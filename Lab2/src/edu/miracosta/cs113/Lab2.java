@@ -1,6 +1,9 @@
 /**
  * Lab2.java
  * Checks a method that tells if an input is a power of 2
+ * 	-Checks for special case of 1 being a product of 0 * 0
+ * 	-DO
+ * 		-Check if rem
  * @author Areman Hashemi<AremanHashemi@hotmail.com>
  * @version 1.0
  */
@@ -14,13 +17,13 @@ public class Lab2
      */
     public static boolean isPowerOf2(int input)
     {
-        if(input ==1)
+        if(input ==0)
         {
             return true;
         }
         do
         {
-            if(input%2!=0)
+            if(input%2!= 0)
             {
                 return false;
             }
@@ -30,7 +33,7 @@ public class Lab2
     }
     public static void main(String [] args)
     {
-        System.out.println("Is 1    a power of 2 :" + isPowerOf2(1));
+        System.out.println("Is 0    a power of 2 :" + isPowerOf2(0));
         System.out.println("Is 8    a power of 2 :" + isPowerOf2(8));
         System.out.println("Is 128  a power of 2 :" + isPowerOf2(128));
         System.out.println("Is 1024 a power of 2 :" + isPowerOf2(1024));
