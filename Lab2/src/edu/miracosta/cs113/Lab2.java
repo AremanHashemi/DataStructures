@@ -3,7 +3,10 @@
  * Checks a method that tells if an input is a power of 2
  * 	-Checks for special case of 1 being a product of 0 * 0
  * 	-DO
- * 		-Check if rem
+ * 		-Check for special 0 input case
+ * 		-Check remainder of division by 2
+ * 		-Divide input by 2
+ * -WHILE input is not 1
  * @author Areman Hashemi<AremanHashemi@hotmail.com>
  * @version 1.0
  */
