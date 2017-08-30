@@ -1,4 +1,3 @@
-package edu.miracosta.cs113;
 /**
  * Detective Jill :
  * - Gets input from user to test different murder sets
@@ -11,6 +10,7 @@ package edu.miracosta.cs113;
  * @version 1.0
  *
  */
+package edu.miracosta.cs113;
 import java.util.Scanner;
 public class DetectiveJill 
 {
@@ -26,7 +26,7 @@ public class DetectiveJill
 
 		System.out.print("Which theory would like you like to test? (1, 2, 3[random]): ");
 		answerSet = keyboard.nextInt();
-		//keyboard.close();
+		keyboard.close();
 
 		jack = new AssistantJack(answerSet);
 
