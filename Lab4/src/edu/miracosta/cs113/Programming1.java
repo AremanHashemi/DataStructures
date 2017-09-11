@@ -7,9 +7,6 @@
  * @version 1.0
  */
 package edu.miracosta.cs113;
-import java.util.Calendar;
-import java.util.Locale;
-
 public class Programming1 
 {
 	public static void main(String [] args)
