@@ -40,15 +40,15 @@ public class PolynomialTest
 	public static void testAddPolynomials() throws AssertionError
 	{
 		Polynomial poly1 = 
-			new Polynomial.Builder()
-				.addTerm(3,4)
-				.addTerm(2,3)
-				.build();
+				new Polynomial.Builder()
+						.addTerm(3,4)
+						.addTerm(2,3)
+						.build();
 		Polynomial poly2 = 
-			new Polynomial.Builder()
-				.addTerm(3,4)
-				.addTerm(2,3)
-				.build();
+				new Polynomial.Builder()
+						.addTerm(3,4)
+						.addTerm(2,3)
+						.build();
 		Polynomial sum = Polynomial.addPolynomials(poly1,poly2);
 		System.out.println(poly1 + " + " + poly2 + " = " + sum);
 		assert sum.toString().equals("8.0X^3.0 + 6.0X^2.0");
@@ -58,14 +58,14 @@ public class PolynomialTest
 		Polynomial poly1 = 
 				new Polynomial.Builder()
 					.build();
-			Polynomial poly2 = 
+		Polynomial poly2 = 
 				new Polynomial.Builder()
-					.addTerm(3,4)
-					.addTerm(2,3)
-					.build();
-			Polynomial sum = Polynomial.addPolynomials(poly1,poly2);
-			System.out.println(poly1 + " + " + poly2 + " = " + sum);
-			assert sum.toString().equals("4.0X^3.0 + 3.0X^2.0");
+				.addTerm(3,4)
+				.addTerm(2,3)
+				.build();
+		Polynomial sum = Polynomial.addPolynomials(poly1,poly2);
+		System.out.println(poly1 + " + " + poly2 + " = " + sum);
+		assert sum.toString().equals("4.0X^3.0 + 3.0X^2.0");
 	}
 	public static void main(String[] args)
 	{
