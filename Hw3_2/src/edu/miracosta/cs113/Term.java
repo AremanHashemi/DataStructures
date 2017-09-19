@@ -44,7 +44,7 @@ public class Term implements Comparable<Term>
 			return null;
 		}
 	}
-	/*
+	/**
 	 * Returns negative int if object is less than, 0 if equal, positive if greater
 	 * ONLY COMPARES EXPONENTS NOT COEFFICIENTS 
 	 */

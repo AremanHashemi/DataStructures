@@ -1,5 +1,5 @@
 /**
- * Lab5 - Create a driver for replace and delete methods
+ * Lab5_Programming1 - Create a driver for replace and delete methods
  * -Create an ArrayList<String> aList
  * ADD the following to aList[book,table,candle,box,pen,pencil,book]
  * PRINT aList
