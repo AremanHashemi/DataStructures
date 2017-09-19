@@ -1,7 +1,21 @@
+/**
+ * LinkedListTest
+ * testEmptyLinkedList()
+ * testAddToFront()
+ * testAddToEnd()
+ * testRemoveHead()
+ * testRemove()
+ * PRINT("Test Passed")
+ * @author Areman Hashemi<AremanHashemi@hotmail.com>
+ * @version 1.0
+ */
 package edu.miracosta.cs113;
-
 public class LinkedListTest
 {
+	/**
+	 * Tests to make sure that you can't call get on an empty LinkedList
+	 * @throws AssertionError
+	 */
 	public static void testEmptyLinkedList() throws AssertionError 
 	{
 		LinkedList<String> students = new LinkedList<String>();
@@ -16,6 +30,10 @@ public class LinkedListTest
 			System.out.println("Emply List Passed");
 		}
 	}
+	/**
+	 * Tests addToFront() 
+	 * @throws AssertionError
+	 */
 	public static void testAddToFront() throws AssertionError
 	{
 		LinkedList<String> students = new LinkedList<String>();
@@ -26,7 +44,11 @@ public class LinkedListTest
 		assert students.size()==2;
 		System.out.println("Test AddToFront Passed");
 	}
-	public static void addToEnd() throws AssertionError
+	/**
+	 * Tests addToEnd()
+	 * @throws AssertionError
+	 */
+	public static void testAddToEnd() throws AssertionError
 	{
 		LinkedList<String> students = new LinkedList<String>();
 		students.addToEnd("Mike");
@@ -36,7 +58,11 @@ public class LinkedListTest
 		assert students.size()==2;
 		System.out.println("Test addtoEnd Passed");
 	}
-	public static void removeHead() throws AssertionError
+	/**
+	 * Tests removeHead()
+	 * @throws AssertionError
+	 */
+	public static void testRemoveHead() throws AssertionError
 	{
 		LinkedList<String> students = new LinkedList<String>();
 		students.addToEnd("Mike");
@@ -46,7 +72,11 @@ public class LinkedListTest
 		assert students.size()==1;
 		System.out.println("Test removeHead Passed");
 	}
-	public static void remove() throws AssertionError
+	/**
+	 * Tests remove()
+	 * @throws AssertionError
+	 */
+	public static void testRemove() throws AssertionError
 	{
 		LinkedList<String> students = new LinkedList<String>();
 		students.addToEnd("Mike");
@@ -60,9 +90,9 @@ public class LinkedListTest
 	{
 		testEmptyLinkedList();
 		testAddToFront();
-		addToEnd();
-		removeHead();
-		remove();
+		testAddToEnd();
+		testRemoveHead();
+		testRemove();
 		System.out.println("Test Passed");
 	}
 }

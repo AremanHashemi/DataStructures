@@ -19,17 +19,24 @@ public class LinkedList<E>
 	}
 	private Node<E> head;
 	private int size;
-	
 	public LinkedList()
 	{
 		head = null;
 		size = 0;
 	}
+	/**
+	 * Adds new node with data to front of the list
+	 * @param data
+	 */
 	public void addToFront(E data)
 	{
 		this.head = new Node(data, this.head);
 		size++;
 	}
+	/**
+	 * Adds new node with data to the end of the list
+	 * @param data
+	 */
 	public void addToEnd(E data)
 	{
 		if(head == null)
@@ -47,10 +54,20 @@ public class LinkedList<E>
 		}
 		size++;
 	}
+	/**
+	 * 
+	 * @return size
+	 */
 	public int size()
 	{
 		return size;
 	}
+	/**
+	 * If requested index is out of bounds throws IndexOutOfBoundsException
+	 * @param index
+	 * @return
+	 * @throws IndexOutOfBoundsException
+	 */
 	public E get(int index) throws IndexOutOfBoundsException
 	{
 		if(index >= size || index < 0)
@@ -69,6 +86,14 @@ public class LinkedList<E>
 			return pointer.data;
 		}
 	}
+	/** 
+	 * Searches for data in list, 
+	 * removes if found, 
+	 * returns true if it was removed
+	 * returns false if not found
+	 * @param data
+	 * @return
+	 */
 	public boolean remove(E data)
 	{
 		if(head!=null)
@@ -98,6 +123,9 @@ public class LinkedList<E>
 		return false;
 		
 	}
+	/**
+	 * Removes the first item in the list
+	 */
 	public void removeHead()
 	{
 		if(head!=null)
