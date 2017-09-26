@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.lang.Exception;
 public class Polynomial
 {
 	private List<Term> terms;
@@ -19,6 +18,12 @@ public class Polynomial
 	{
 		return termsToString(terms);
 	}
+	/**
+	 * Takes in a list of terms 
+	 * returns a string of terms
+	 * @param terms
+	 * @return toString
+	 */
 	private static String termsToString(List<Term> terms)
 	{
 		if(terms.isEmpty())
@@ -35,10 +40,14 @@ public class Polynomial
 				builder.append(" + ");
 			}
 		}
-			
-			
 		return builder.toString();
 	}
+	/**
+	 * adds two polynomials together and returns a new polynomial of the sum
+	 * @param firstPolynomial
+	 * @param secondPolynomial
+	 * @return sum of the two polynomials 
+	 */
 	public static Polynomial addPolynomials(Polynomial firstPolynomial,Polynomial secondPolynomial)
 	{
 		Polynomial.Builder sumPolynomial = new Polynomial.Builder();
@@ -84,6 +93,12 @@ public class Polynomial
 		}
 		return sumPolynomial.build();
 	}
+	/**
+	 * Use a builder class to insure all created polynomials 
+	 * are sorted and simplified before being returned
+	 * @author arema
+	 *
+	 */
 	public static class Builder
 	{ 
 		private List<Term> terms;
@@ -91,21 +106,39 @@ public class Polynomial
 		{
 			terms = new ArrayList<Term>();
 		}
+		/**
+		 * adds term to builders terms
+		 * @param term
+		 * @return
+		 */
 		public Builder add(Term term)
 		{
 			terms.add(term);
 			return this;
 		}
+		/**
+		 * adds a term defined by exponent and coefficient to builders list
+		 * @param exponent
+		 * @param coefficient
+		 * @return
+		 */
 		public Builder addTerm(double exponent, double coefficient)
 		{
 			Term term = new Term(exponent, coefficient);
 			this.add(term);
 			return this;
 		}
+		/**
+		 * returns the polynomial in a string
+		 */
 		public String toString()
 		{
 			return termsToString(terms);
 		}
+		/**
+		 * Returns a built polynomial that is in order and simplified
+		 * @return polynomial
+		 */
 		public Polynomial build()
 		{
 			if(terms.isEmpty())
@@ -127,7 +160,6 @@ public class Polynomial
 				}
 			}
 			return new Polynomial(terms);
-				
 		}
 	}
 }
