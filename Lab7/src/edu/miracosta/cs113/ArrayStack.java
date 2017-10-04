@@ -6,6 +6,7 @@ public class ArrayStack<E> implements Stack<E>
 	private E[] data;
 	private int topOfStack = -1;
 	
+	@SuppressWarnings("unchecked")
 	public ArrayStack()
 	{
 		data = (E[])new Object[INITIAL_CAPACITY];
@@ -44,6 +45,11 @@ public class ArrayStack<E> implements Stack<E>
 		data[topOfStack] = obj;
 		return obj;
 	}
+	/**
+	 * Reallocate called if trying to add to a full array
+	 * Copies data over, sets data array to new array x2 the size
+	 */
+	@SuppressWarnings("unchecked")
 	private void reallocate()
 	{
 		int newLength = data.length * 2;

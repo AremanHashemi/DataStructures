@@ -1,11 +1,12 @@
 /**
  * Hw5 StackTester - Tests an implementation of a linkedList stack using palindromes
- * Testing DataStructure LinkedListStack
+ * 
+ * Testing DataStructure LinkedListStack:
  * 	pushOnceTest() - tests peek as well 
  * 	pushTwiceTest()
  * 	popTest()
  * 
- * Testing Pallindrome method using LinkedListStack
+ * Testing Pallindrome method using LinkedListStack:
  * 	palindromeTestEven()
  * 	palindromeTestOdd()
  * 	palindromeTestFalse()
@@ -48,53 +49,16 @@ public class StackTester
 	@Test
 	public void palindromeTestEven()
 	{
-		assertEquals(true,checkPalinDrome("Aibohphobia"));
+		assertEquals(true,HelperMethods.checkPalinDrome("Aibohphobia"));
 	}
 	@Test
 	public void palindromeTestOdd()
 	{
-		assertEquals(true,checkPalinDrome("wow"));
+		assertEquals(true,HelperMethods.checkPalinDrome("wow"));
 	}
 	@Test
 	public void palindromeTestFalse()
 	{
-		assertEquals(false,checkPalinDrome("wohw"));
-	}
-	private boolean checkPalinDrome(String input)
-	{
-		int length, halfLength;
-		Stack<Character> inputStack = new ListStack<Character>();
-		Stack<Character> firstHalfStack = new ListStack<Character>();
-		Stack<Character> secondHalfStack;
-		input = input.toLowerCase();
-		input = input.replaceAll("\\s","");
-		length = input.length();
-		halfLength = length/2;
-		while(!input.isEmpty())
-		{
-			char nextChar = input.charAt(0);
-			input = input.substring(1);
-			inputStack.push(nextChar);
-		}
-		for(int i = 0; i < halfLength; i++)
-		{
-			firstHalfStack.push(inputStack.pop());
-		}
-		secondHalfStack = inputStack;
-		if(halfLength%2 != 0)
-		{
-			secondHalfStack.pop();
-		}
-		for(int i = 0; i < halfLength; i++)
-		{
-			char firstStackValue, secondStackValue;
-			firstStackValue = firstHalfStack.pop();
-			secondStackValue = secondHalfStack.pop();
-			if(firstStackValue != secondStackValue)
-			{
-				return false;
-			}
-		}
-		return true;
+		assertEquals(false,HelperMethods.checkPalinDrome("wohw"));
 	}
 }
