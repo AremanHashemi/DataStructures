@@ -1,5 +1,4 @@
 package edu.miracosta.cs113;
-import java.util.List;
 import java.util.EmptyStackException;
 public class ArrayStack<E> implements Stack<E>
 {

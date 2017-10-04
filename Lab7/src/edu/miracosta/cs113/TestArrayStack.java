@@ -1,19 +1,14 @@
 /**
  * Lab7 TestArrayStack- Junit tests for ArrayStack
  * Testing generic Double Linked List properties
-	 * testAdd()
-	 * testAddToSpot()
-	 * testGet()
-	 * testRemovePosition()
-	 * testRemoveObject()
-	 * testSet()
- * Testing Polynomial properties
-	 * testEmptyBuilder();
-	 * testFirstOrderPolynomial();
-	 * testSecondOrderPolynomialSame();
-	 * testSecondOrderPolynomialDifferent();
-	 * testAddingToZero();
-	 * testAddPolynomials();
+	 * pushOnceTest, also checks peek
+	 * pushTwiceTest, also checks pop
+	 * popTest
+	 * reallocateTest
+ * Testing method checkPalindrome() properties
+	 * palindromeTestEven
+	 * palindromeTestOdd
+	 * palindromeTestFalse
  * @author Areman Hashemi<AremanHashemi@hotmail.com>
  * @version 2.0
  */

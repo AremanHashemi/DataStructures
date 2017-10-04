@@ -1,5 +1,5 @@
 /**
- * Hw5 StackTester - Tests an implementation of a linkedList stack using pallindromes
+ * Hw5 StackTester - Tests an implementation of a linkedList stack using palindromes
  * Testing DataStructure LinkedListStack
  * 	pushOnceTest() - tests peek as well 
  * 	pushTwiceTest()
