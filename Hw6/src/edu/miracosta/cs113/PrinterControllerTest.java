@@ -1,8 +1,7 @@
 package edu.miracosta.cs113;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+import edu.miracosta.cs113.Printer.Job;
 
 public class PrinterControllerTest
 {
@@ -17,8 +16,8 @@ public class PrinterControllerTest
 	public void addJobs()
 	{
 		PrinterController officeStation = new PrinterController();
-		officeStation.addPrinter("Printer One");
-		officeStation.addPrinter("Printer Two");
+		officeStation.addPrinter("One");
+		officeStation.addPrinter("Two");
 		officeStation.add(new Job(15, "myEssay"));
 		officeStation.add(new Job(3, "myEssay"));
 		officeStation.add(new Job(400, "myEssay"));

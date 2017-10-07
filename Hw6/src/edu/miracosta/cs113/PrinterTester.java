@@ -10,6 +10,7 @@ public class PrinterTester
 	public void testEmpty()
 	{
 		Printer myPrinter = new Printer();
+		assertEquals(null, myPrinter.print());
 	}
 	@Test
 	public void AddTest()
@@ -18,20 +19,11 @@ public class PrinterTester
 		assertEquals(true,myPrinter.addJob(4,"My documentation"));
 	}
 	@Test
-	public void testPrint()
-	{
-		Printer myPrinter = new Printer();
-		myPrinter.addJob(10,"My documentation");
-		//System.out.println(myPrinter);
-		assertEquals(true, myPrinter.print());
-		
-	}
-	@Test
 	public void testUnfinishedPrint()
 	{
 		Printer myPrinter = new Printer();
 		myPrinter.addJob(11,"My documentation");
-		assertEquals(false, myPrinter.print());
+		assertEquals(null, myPrinter.print());
 	}
 	@Test
 	public void testToString()

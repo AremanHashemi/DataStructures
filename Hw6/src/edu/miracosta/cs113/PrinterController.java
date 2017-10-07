@@ -1,8 +1,8 @@
 package edu.miracosta.cs113;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import edu.miracosta.cs113.Printer.Job;
 
 public class PrinterController
 {
@@ -16,7 +16,7 @@ public class PrinterController
 		printers = new ArrayList<Printer>();
 		for(int i = 0; i < numberOfPrinters;i++)
 		{
-			addPrinter("Printer #" + (i+1));
+			addPrinter("" + (i+1));
 		}
 	}
 	public void addPrinter(String id)
@@ -45,7 +45,17 @@ public class PrinterController
 		ListIterator<Printer> printerIterator = printers.listIterator();
 		while(printerIterator.hasNext())
 		{
-			printerIterator.next().print();
+			
+			Printer printer = printerIterator.next();
+			Job finishedJob = printer.print();
+			printSuccess(finishedJob,printer.getId());
+		}
+	}
+	private void  printSuccess(Job job, String printerId)
+	{
+		if(job != null)
+		{
+			System.out.println("Printer " + printerId + " has printed :" + job);
 		}
 	}
 	public boolean isJobsEmpty()
