@@ -52,9 +52,16 @@ public class ArrayQueue<E> implements Queue<E>
 	}
 
 	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEmpty()
+	{
+		if(size <= 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	@Override

@@ -1,5 +1,4 @@
 package edu.miracosta.cs113;
-import java.util.EmptyStackException;
 import java.util.Queue;
 public class Printer
 {
@@ -7,12 +6,21 @@ public class Printer
 	private String id;
 	private int pagesPrinted;
 	private Queue<Job> jobs; 
+	
+	/**
+	 * Default contructor
+	 * 
+	 */
 	public Printer()
 	{
 		id = "Default Printer";
 		pagesPrinted = 0;
 		jobs = new ArrayQueue<Job>();
 	}
+	/**
+	 * Contructor with only the name of the printer
+	 * @param id
+	 */
 	public Printer(String id)
 	{
 		pagesPrinted = 0;
@@ -39,38 +47,31 @@ public class Printer
 			return false;
 		}
 	}
-	public boolean addJob(Job printRequest)
+	public void addJob(Job printRequest)
 	{
-		if(printRequest.getPages() > 0)
-		{
-			jobs.offer(new Job(printRequest));
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		System.out.println("Job Received : " + printRequest);
+		jobs.offer(new Job(printRequest));
 	}
-	public boolean print()
+	public Job print()
 	{
 		if(jobs.peek()!= null)
 		{
 			pagesPrinted += PAGES_PER_MINUTE;
-			if(pagesPrinted < jobs.element().getPages())
+			if(pagesPrinted < jobs.element().getNumPages())
 			{
-				return true;
+				return null;
 			}
 			else
 			{
-				jobs.remove();
 				pagesPrinted = 0;
-				return true;
+				return jobs.remove();
 			}
+			r
 		}
-		else
-		{
-			return false;
-		}
+	}
+	public boolean isEmpty()
+	{
+		return jobs.isEmpty();
 	}
 	public String toString()
 	{
@@ -78,7 +79,7 @@ public class Printer
 		printerString.append("Printer : " + id + "\n");
 		if(jobs.peek()!=null)
 		{
-			int printSize = jobs.peek().getPages();
+			int printSize = jobs.peek().getNumPages();
 			String percentDone = String.valueOf((Math.round((double)pagesPrinted/printSize*100)));
 			printerString.append(jobs.poll()+ ", Current status = " + percentDone + "%\n");
 		}
@@ -88,4 +89,5 @@ public class Printer
 		}
 		return printerString.toString();
 	}
+	
 }

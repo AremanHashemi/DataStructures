@@ -19,9 +19,9 @@ public class PrinterControllerTest
 		PrinterController officeStation = new PrinterController();
 		officeStation.addPrinter("Printer One");
 		officeStation.addPrinter("Printer Two");
-		officeStation.printRequest(new Job(15, "myEssay"));
-		officeStation.printRequest(new Job(3, "myEssay"));
-		officeStation.printRequest(new Job(400, "myEssay"));
+		officeStation.add(new Job(15, "myEssay"));
+		officeStation.add(new Job(3, "myEssay"));
+		officeStation.add(new Job(400, "myEssay"));
 		System.out.println(officeStation);
 	}
 //	@Test
@@ -30,11 +30,11 @@ public class PrinterControllerTest
 		PrinterController officeStation = new PrinterController();
 		officeStation.addPrinter("Printer One");
 		officeStation.addPrinter("Printer Two");
-		officeStation.printRequest(new Job(15, "myEssay"));
-		officeStation.printRequest(new Job(3, "myEssay"));
-		officeStation.printRequest(new Job(400, "myEssay"));
+		officeStation.add(new Job(15, "myEssay"));
+		officeStation.add(new Job(3, "myEssay"));
+		officeStation.add(new Job(400, "myEssay"));
 		officeStation.addPrinter("Printer Three");
-		officeStation.printRequest(new Job(400, "myEssay"));
+		officeStation.add(new Job(400, "myEssay"));
 		System.out.println(officeStation);
 	}
 	@Test
@@ -44,11 +44,11 @@ public class PrinterControllerTest
 		officeStation.addPrinter("Printer One");
 		officeStation.addPrinter("Printer Two");
 		officeStation.addPrinter("Printer Three");
-		officeStation.printRequest(new Job(15, "myEssay"));
-		officeStation.printRequest(new Job(3, "myEssay"));
-		officeStation.printRequest(new Job(29, "myEssay"));
-		officeStation.printRequest(new Job(400, "myEssay"));
-		officeStation.print();
+		officeStation.add(new Job(15, "myEssay"));
+		officeStation.add(new Job(3, "myEssay"));
+		officeStation.add(new Job(29, "myEssay"));
+		officeStation.add(new Job(400, "myEssay"));
+		officeStation.process();
 		System.out.println(officeStation);
 	}
 

@@ -11,6 +11,14 @@ public class PrinterController
 	{
 		printers = new ArrayList<Printer>();
 	}
+	public PrinterController(int numberOfPrinters)
+	{
+		printers = new ArrayList<Printer>();
+		for(int i = 0; i < numberOfPrinters;i++)
+		{
+			addPrinter("Printer #" + (i+1));
+		}
+	}
 	public void addPrinter(String id)
 	{
 		printers.add(new Printer(id));
@@ -19,22 +27,36 @@ public class PrinterController
 	{
 		printers.remove(printers.size());
 	}
-	public void printRequest(Job request)
+	public void add(Job job)
+	{
+		findPrinterForJobSize(job.getNumPages()).addJob(job);
+	}
+	private Printer findPrinterForJobSize(int numPages)
 	{
 		ListIterator<Printer> printerIterator = printers.listIterator();
-		while(printerIterator.hasNext() && printerIterator.nextIndex() * 10 < request.getPages())
+		while(printerIterator.hasNext() && printerIterator.nextIndex() * 10 < numPages)
 		{
 			printerIterator.next();
 		}
-		printerIterator.previous().addJob(request);
+		return printerIterator.previous();
 	}
-	public void print()
+	public void process()
 	{
 		ListIterator<Printer> printerIterator = printers.listIterator();
 		while(printerIterator.hasNext())
 		{
 			printerIterator.next().print();
 		}
+	}
+	public boolean isJobsEmpty()
+	{
+		boolean isEmpty = true;
+		ListIterator<Printer> printerIterator = printers.listIterator();
+		while(printerIterator.hasNext())
+		{
+			isEmpty = printerIterator.next().isEmpty();
+		}
+		return isEmpty;
 	}
 	public String toString()
 	{

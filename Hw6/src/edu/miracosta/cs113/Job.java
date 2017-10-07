@@ -2,17 +2,32 @@ package edu.miracosta.cs113;
 import java.util.Random;
 public class Job
 {
-	private int pages;
+	private int numPagesTotal, numPagesPrinted;
 	private String title;
 	private int id;
+	/**
+	 * Default constructor 
+	 * sets pages, id = 0, title to empty string
+	 */
 	public Job()
 	{
 		setAll(0,"",0);
 	}
+	/**
+	 * Full constructor
+	 * @param pages
+	 * @param title
+	 * @param id
+	 */
 	public Job(int pages, String title, int id)
 	{
 		setAll(pages, title, id);
 	}
+	/**
+	 * Partial constructor
+	 * @param pages
+	 * @param title
+	 */
 	public Job(int pages, String title)
 	{
 		Random randomGenerator = new Random();
@@ -21,13 +36,13 @@ public class Job
 	}
 	public Job(Job jobInput)
 	{
-		setAll(jobInput.getPages(), jobInput.getTitle(), jobInput.getId());
+		setAll(jobInput.getNumPages(), jobInput.getTitle(), jobInput.getId());
 	}
 	public boolean setPages(int pages)
 	{
 		if(pages > 0)
 		{
-			this.pages = pages;
+			this.numPagesTotal = pages;
 			return true;
 		}
 		else
@@ -49,9 +64,9 @@ public class Job
 		setTitle(title);
 		setId(id);
 	}
-	public int getPages()
+	public int getNumPages()
 	{
-		return pages;
+		return numPagesTotal;
 	}
 	public String getTitle()
 	{
@@ -63,6 +78,6 @@ public class Job
 	}
 	public String toString()
 	{
-		return title + " " + pages + " pages, ID : " + id;
+		return title + " " + numPagesTotal + " pages, ID : " + id;
 	}
 }
