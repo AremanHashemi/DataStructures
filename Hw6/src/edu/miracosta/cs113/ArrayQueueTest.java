@@ -1,12 +1,9 @@
 package edu.miracosta.cs113;
-
 import static org.junit.Assert.*;
 import java.util.NoSuchElementException;
 import java.util.LinkedList;
 import java.util.Queue;
-
 import org.junit.Test;
-
 public class ArrayQueueTest 
 {
 

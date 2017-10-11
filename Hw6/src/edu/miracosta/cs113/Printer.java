@@ -36,6 +36,12 @@ public class Printer
 	{
 		return id;
 	}
+	/**
+	 * Adds a print job to the printer
+	 * @param pages
+	 * @param title
+	 * @return
+	 */
 	public boolean addJob(int pages,String title)
 	{
 		if(pages > 0)
@@ -48,11 +54,20 @@ public class Printer
 			return false;
 		}
 	}
+	/**
+	 * adds a print job to the printer 
+	 * @param printRequest
+	 */
 	public void addJob(Job printRequest)
 	{
 		System.out.println("Job Received : " + printRequest);
 		jobs.offer(new Job(printRequest));
 	}
+	/**
+	 * prints 10 pages off the next item in the queue
+	 * if the job is done removes the job from the queue
+	 * @return
+	 */
 	public Job print()
 	{
 		if(jobs.peek()!= null)

@@ -7,10 +7,17 @@ import edu.miracosta.cs113.Printer.Job;
 public class PrinterController
 {
 	private List<Printer> printers;
+	/**
+	 * default constructor
+	 */
 	public PrinterController()
 	{
 		printers = new ArrayList<Printer>();
 	}
+	/**
+	 * creates a controller with a specified number of printers
+	 * @param numberOfPrinters
+	 */
 	public PrinterController(int numberOfPrinters)
 	{
 		printers = new ArrayList<Printer>();
@@ -19,18 +26,34 @@ public class PrinterController
 			addPrinter("" + (i+1));
 		}
 	}
+	/**
+	 * adds a printer to the printerController with specified id
+	 * @param id
+	 */
 	public void addPrinter(String id)
 	{
 		printers.add(new Printer(id));
 	}
+	/**
+	 * removes the last printer
+	 */
 	public void removePrinter()
 	{
 		printers.remove(printers.size());
 	}
+	/**
+	 * adds a job to the printer
+	 * @param job
+	 */
 	public void add(Job job)
 	{
 		findPrinterForJobSize(job.getNumPages()).addJob(job);
 	}
+	/**
+	 * decides which printer job input gets sent to
+	 * @param numPages
+	 * @return
+	 */
 	private Printer findPrinterForJobSize(int numPages)
 	{
 		ListIterator<Printer> printerIterator = printers.listIterator();
@@ -40,6 +63,9 @@ public class PrinterController
 		}
 		return printerIterator.previous();
 	}
+	/**
+	 * does one tick of printing for each printer
+	 */
 	public void process()
 	{
 		ListIterator<Printer> printerIterator = printers.listIterator();
@@ -51,6 +77,11 @@ public class PrinterController
 			printSuccess(finishedJob,printer.getId());
 		}
 	}
+	/**
+	 * used to print finished jobs
+	 * @param job
+	 * @param printerId
+	 */
 	private void  printSuccess(Job job, String printerId)
 	{
 		if(job != null)
