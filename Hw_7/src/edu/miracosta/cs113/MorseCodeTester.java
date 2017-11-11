@@ -1,13 +1,10 @@
 package edu.miracosta.cs113;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import org.junit.jupiter.api.Test;
-
+import org.junit.Test;
 class MorseCodeTester
 {
 

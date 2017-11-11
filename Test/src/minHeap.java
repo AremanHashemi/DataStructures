@@ -1,8 +1,8 @@
-package edu.miracosta.cs113;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class minHeap<E extends Comparable<E>> extends Heap<E>
+public class minHeap<E extends Comparable> extends Heap<E>
 {
     public minHeap()
     {
@@ -21,9 +21,15 @@ public class minHeap<E extends Comparable<E>> extends Heap<E>
         super();
         comparator = comp;
     }
-    @Override
     public int compare(E left, E right)
     {
-    	return comparator.compare(left, right);
+        if (comparator != null)
+        { // A Comparator is defined.
+            return comparator.compare(left, right);
+        }
+        else
+        { // Use left’s compareTo method.
+            return ((Comparable<E>) left).compareTo(right);
+        }
     }
 }

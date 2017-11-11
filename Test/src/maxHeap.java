@@ -1,8 +1,8 @@
-package edu.miracosta.cs113;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class maxHeap<E extends Comparable<E>> extends Heap<E>
+public class maxHeap<E extends Comparable> extends Heap<E>
 {
     public maxHeap()
     {
@@ -21,9 +21,15 @@ public class maxHeap<E extends Comparable<E>> extends Heap<E>
         super();
         comparator = comp;
     }
-    @Override
     public int compare(E left, E right)
     {
-    	return comparator.compare(left, right);
+        if (comparator != null)
+        { // A Comparator is defined.
+            return -1 * comparator.compare(left, right);
+        }
+        else
+        { // Use left’s compareTo method.
+            return -1 * ((Comparable<E>) left).compareTo(right);
+        }
     }
 }

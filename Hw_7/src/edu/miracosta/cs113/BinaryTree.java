@@ -1,5 +1,5 @@
 package edu.miracosta.cs113;
-import java.io.*;
+import java.io.Serializable;
 import java.util.Scanner;
 public class BinaryTree<E> implements Serializable
 {
