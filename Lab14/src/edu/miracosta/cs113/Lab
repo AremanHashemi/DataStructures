@@ -1,0 +1,28 @@
+
+Index	Key
+[0]		24
+[1]		6
+[2]		20
+[3]
+[4]		14
+
+24 mod 5 = 4
+6  mod 5 = 1
+20 mod 5 = 0
+14 mod 5 = 4
+
+
+Order keys inserted
+14
+24
+6
+20
+
+
+Chaining
+Index	Key
+[0]		20
+[1]		6
+[2]		
+[3]		
+[4]		14 24
