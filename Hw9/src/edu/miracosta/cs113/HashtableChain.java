@@ -2,6 +2,8 @@ package edu.miracosta.cs113;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
 import javax.swing.text.html.HTMLDocument.Iterator;
 public class HashtableChain<K, V>  implements KWHashMap<K, V>
 {
@@ -13,6 +15,10 @@ public class HashtableChain<K, V>  implements KWHashMap<K, V>
 	{
 		table = new LinkedList[CAPACITY];
 	}
+	/**
+	 * returns the value associated with the specified key
+	 * returns null if key is not present
+	 */
 	@Override
 	public V get(Object key)
 	{
@@ -30,6 +36,9 @@ public class HashtableChain<K, V>  implements KWHashMap<K, V>
 		}
 		return null;
 	}
+	/**
+	 * prints every value in the hashTable
+	 */
 	public void printTable()
 	{
 		for(int i = 0; i < table.length; i++)
@@ -44,6 +53,10 @@ public class HashtableChain<K, V>  implements KWHashMap<K, V>
 			
 		}
 	}
+	/**
+	 * Associates the specified value with the s-pecified key, returns
+	 * the previous value associated with the specified key or null
+	 */
 	@Override
 	public V put(K key, V value)
 	{
@@ -65,9 +78,16 @@ public class HashtableChain<K, V>  implements KWHashMap<K, V>
 				return oldValue;
 			}
 		}
+		Entry newEntry = new Entry(key,value);
+		table[index].add(newEntry);
+		numKeys++;
 		return null;
 	}
-
+	/**
+	 * Removing mapping for the given key
+	 * if not present returns null
+	 * if present returns previous value
+	 */
 	@Override
 	public V remove(Object key)
 	{
@@ -93,14 +113,15 @@ public class HashtableChain<K, V>  implements KWHashMap<K, V>
 		}
 		return null;
 	}
-
 	@Override
 	public int size()
 	{
 		// TODO Auto-generated method stub
 		return numKeys;
 	}
-
+	/**
+	 * returns true if empty
+	 */
 	@Override
 	public boolean isEmpty()
 	{
@@ -113,6 +134,11 @@ public class HashtableChain<K, V>  implements KWHashMap<K, V>
 			return false;
 		}
 	}
+	/**
+	 * returns index in table based off keys hashcode
+	 * @param key
+	 * @return
+	 */
 	private int getHashIndex(Object key)
 	{
 		int index = key.hashCode() % table.length;
@@ -122,30 +148,78 @@ public class HashtableChain<K, V>  implements KWHashMap<K, V>
 		}
 		return index; 
 	}
-//	private class SetIterator
-//	{
-//		private int index = 0;
-//		private int lastItemReturned = -1;
-//		private SetIterator()
-//		{
-//			
-//		}
-//		public boolean hasNext()
-//		{
-//			public boolean hasNext()
-//	        {
-//	            return nextItem != null;
-//	        }
-//		}
-//		public Entry next()
-//		{
-//			
-//		}
-//		public Entry remove()
-//		{
-//			
-//		}
-//	}
+	private class SetIterator
+	{
+		private int index = 0;
+		private ListIterator indexIterator;
+		public SetIterator()
+		{
+			if(!isEmpty())
+			{
+				while(table[index].isEmpty() && index < table.length)
+				{
+					index++;
+				}
+				indexIterator = table[index].listIterator();
+			}
+		}
+		public boolean hasNext()
+		{
+			if(indexIterator.hasNext())
+			{
+				return true;
+			}
+			while(table[index] != null && index < table.length)
+			{
+				index++;
+			}
+			if(index < table.length)
+			{
+				return true;
+			}
+			return false;
+		}
+		public Entry next()
+		{
+			if(!hasNext())
+            {
+                throw new NoSuchElementException();
+            }
+			if(indexIterator.hasNext())
+			{
+				return (Entry) indexIterator.next();
+			}
+			while(table[index]!= null && index < table.length)
+			{
+				index++;
+			}
+			if(index < table.length)
+			{
+				indexIterator = table[index].listIterator();
+				return (Entry) indexIterator.next();
+			}
+			return (Entry)indexIterator.next();
+		}
+		public void remove()
+		{
+			try
+			{
+				numKeys--;
+				indexIterator.remove();
+			}
+			catch(IllegalStateException e)
+			{
+				throw new IllegalStateException();
+			}
+		}
+	}
+	/**
+	 * Container class for key value pairs
+	 * @author arema
+	 *
+	 * @param <K>
+	 * @param <V>
+	 */
 	private class Entry<K,V>
 	{
 		K key;
