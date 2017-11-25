@@ -1,11 +1,14 @@
 /**
- * -WHILE record file isn't empty
- * -OPEN data file
- * -READ 10 data records
- * -SORT 10 data records
- * -WRITE 10 data records to one of two alternate files
- * 
- * -MERGE two alternate files to the original data file
+ * HW 10 : sorts Files using variation of mergeSort
+ * sortFile()
+ * 	CALCULATE FILESIZE()
+ * 	DO
+ * 		SPLIT(INPUT FILE, BOOL firstRun) // Splits File into runs, writes files to one of two temp files
+ * 		MERGE(sizeOfSplits) // merges two temp files back to mainfile
+ * 		*2 sizeOfRun
+ * 	WHILE ( sizeOfRun < fileSize)
+ * @author Areman Hashemi<AremanHashemi@hotmail.com>
+ * @version 2.0
  */
 package edu.miracosta.cs113;
 
@@ -15,7 +18,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -25,29 +27,57 @@ public class MergeFileSort
 	private File outputFile1;
 	private File outputFile2;
 	private int sizeOfRun;
-	
-	public MergeFileSort(int sizeOfRun)
+	public MergeFileSort(File inputFile, int sizeOfRun)
 	{
-		inputFile = new File("./inputFile1.txt");
+		this.inputFile = inputFile;
 		outputFile1 = new File("./outputFile1.txt");
 		outputFile2 = new File("./outputFile2.txt");
 		this.sizeOfRun = sizeOfRun;
 	}
+	/**
+	 * sorts inputFile
+	 * @throws IOException
+	 */
 	public void sortFile() throws IOException
 	{
-		Scanner input = new Scanner(inputFile);
+		
 		boolean firstRun = true;
-		int fileSize = 20;
+		int fileSize = calculateFileSize(inputFile);
 		do
 		{
-			split(input,firstRun);
+			split(inputFile,firstRun);
 			merge(sizeOfRun);
 			sizeOfRun *= 2;
-			firstRun = false;
 		}while(sizeOfRun < fileSize);
 	}
-	public void split(Scanner input, boolean firstRun) throws IOException
+	/**
+	 * returns number of integers in file
+	 * @param fileInput
+	 * @return
+	 * @throws FileNotFoundException
+	 */
+	private int calculateFileSize(File fileInput) throws FileNotFoundException
 	{
+		int size = 0;
+		Scanner input = new Scanner(fileInput);
+		while(input.hasNextInt())
+		{
+			input.nextInt();
+			size++;
+		}
+		input.close();
+		return size;
+	}
+	/**
+	 * Splits fileInput into two temporary files half of the fineInputData
+	 * If it is the first run sorts these inputs
+	 * @param fileInput
+	 * @param firstRun
+	 * @throws IOException
+	 */
+	private void split(File fileInput, boolean firstRun) throws IOException
+	{
+		Scanner input = new Scanner(inputFile);
 		BufferedWriter writer1 = new BufferedWriter(new FileWriter(outputFile1));
 		BufferedWriter writer2 = new BufferedWriter(new FileWriter(outputFile2));
 		boolean swapWriter = false;
@@ -57,8 +87,7 @@ public class MergeFileSort
 			run = readRecords(input, sizeOfRun);
 			if(firstRun)
 			{
-				Collections.sort(run);
-				System.out.print(run);
+				Collections.sort(run);	
 			}
 			while(!run.isEmpty())
 			{
@@ -75,8 +104,14 @@ public class MergeFileSort
 		}
 		writer1.close();
 		writer2.close();
+		input.close();
 	}
-	public void merge(int runSize) throws IOException
+	/**
+	 * Merges two temp files back into inputFile 
+	 * @param runSize
+	 * @throws IOException
+	 */
+	private void merge(int runSize) throws IOException
 	{
 		Scanner temp1 = new Scanner(outputFile1);
 		Scanner temp2 = new Scanner(outputFile2);
@@ -91,6 +126,7 @@ public class MergeFileSort
 			a = readRecords(temp1, runSize);
 			b = readRecords(temp2, runSize);
 			c = mergeArrays(a,b);
+			System.out.println(c);
 			while(!c.isEmpty())
 			{
 				writer.write(String.valueOf(c.remove(0))+ " ");
@@ -112,8 +148,14 @@ public class MergeFileSort
 		}
 		writer.close();
 	}
-	//assume sorted
-	public ArrayList<Integer> mergeArrays(ArrayList<Integer> a, ArrayList<Integer> b)
+	/**
+	 * ASSUMES INPUT ARRAYS ARE SORTED SMALLEST-> LARGEST
+	 * returns an merged arraylist 
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	private ArrayList<Integer> mergeArrays(ArrayList<Integer> a, ArrayList<Integer> b)
 	{
 		ArrayList<Integer> c = new ArrayList();
 		while(!a.isEmpty() && !b.isEmpty())
@@ -140,8 +182,14 @@ public class MergeFileSort
 		}
 		return c;
 	}
-	
-	public ArrayList<Integer> readRecords(Scanner input,int numRead)
+	/**
+	 * Reads in numRead number of integers from input 
+	 * returned in arraylist
+	 * @param input
+	 * @param numRead
+	 * @return
+	 */
+	private ArrayList<Integer> readRecords(Scanner input,int numRead)
 	{
 		ArrayList<Integer> dataRead = new ArrayList(numRead);
 		while(input.hasNextInt() && dataRead.size() < numRead)
