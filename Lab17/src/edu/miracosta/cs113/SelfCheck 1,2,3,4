@@ -1,0 +1,110 @@
+SelfCheck 1,2,3,4
+
+Self Check 1 add "apple" "cat" "hat" to the quick brown fox avl tree
+1)
+						jumps
+		brown						quick
+	The			fox				over		the
+			dog				lazy
+			
+2) add apple
+							jumps
+			brown						quick
+	The				fox				over		the
+		apple	dog				lazy
+
+3) add cat
+
+							jumps
+			brown							quick
+	The				dog					over		the
+		apple	cat		fox			lazy
+		
+4) add hat
+
+							jumps
+			brown							quick
+	The				dog					over		the
+		apple	cat		fox			lazy
+							hat
+							
+Self check 2 
+
+1) rotate right 
+				50 -2
+		25 +1	 	c
+	a		b
+	
+	
+				25 +2
+			a			50 -1
+			 		b		c
+2) why doesnt this fix the problem
+	Because the imbalance lies within B by just shifting around the root of the imbalance you're not fixing b just shifting it to the other side
+	
+
+Self Check 3
+Build an AVL tree that inserts the integers 30, 40, 15, 25, 90, 80, 70, 85, 15, 72 in the given order.
+
+						30
+			15						80
+				25			70				90
+						40		72		85
+						
+Self Check 4
+Build the AVL tree from the sentence “Now is the time for all good men to come to the aid of the party”.
+
+									is
+					all								the
+			now				for			  	of			time
+				aid		come   good 	men	  party			to
+				
+				
+				
+Programming 1
+Symmetric with rebalance  left
+
+ private AVLNode<E> rebalanceRight(AVLNode<E> localRoot)
+    {
+        // Obtain reference to left child.
+        AVLNode<E> rightChild = (AVLNode<E>) localRoot.right;
+        // See whether left-right heavy.
+        if (rightChild.balance > AVLNode.BALANCED)
+        {
+            // Obtain reference to left-right child.
+            AVLNode<E> rightLeftChild = (AVLNode<E>) rightChild.left;
+            // Adjust the balances to be their new values after
+            // the rotations are performed.
+            if (rightLeftChild.balance < AVLNode.BALANCED)
+            {
+                rightChild.balance = AVLNode.LEFT_HEAVY;
+                rightLeftChild.balance = AVLNode.BALANCED;
+                localRoot.balance = AVLNode.BALANCED;
+            }
+            else if (rightLeftChild.balance > AVLNode.BALANCED)
+            {
+                rightChild.balance = AVLNode.BALANCED;
+                rightLeftChild.balance = AVLNode.BALANCED;
+                localRoot.balance = AVLNode.RIGHT_HEAVY;
+            } 
+            else
+            {
+                rightChild.balance = AVLNode.BALANCED;
+                localRoot.balance = AVLNode.BALANCED;
+            }
+            // Perform left rotation.
+            localRoot.right = rotateRight(rightChild);
+        }
+        else
+        {   //Left-Left case
+            // In this case the leftChild (the new root)
+            // and the root (new right child) will both be balanced
+            // after the rotation.
+            rightChild.balance = AVLNode.BALANCED;
+            localRoot.balance = AVLNode.BALANCED;
+        }
+        // Now rotate the local root right.
+        return (AVLNode<E>) rotateLeft(localRoot);
+    }
+
+	

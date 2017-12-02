@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
+
 import org.junit.Test;
 /**
  * HW 10 : sorts Files using variation of mergeSort
@@ -58,6 +60,8 @@ public class MergeFileSortTester
 			writer.write(String.valueOf(n)+ " ");
 		}
 		writer.close();
+		Scanner keyboard = new Scanner(System.in);
+		int x = keyboard.nextInt();
 		File testFile = new File("./test 7002.txt");
 		MergeFileSort testMerge = new MergeFileSort(testFile, 10);
 		testMerge.sortFile();
