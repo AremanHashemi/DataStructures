@@ -1,4 +1,4 @@
- 1)Show the skip-list after inserting the values 11, 12, 22, and 33 into the skip-list shown in Figure 9.65. 
+  1)Show the skip-list after inserting the values 11, 12, 22, and 33 into the skip-list shown in Figure 9.65. 
  Assume that the random number generator returned 2, 1, 3, and 1 for the new node levels.
  
  Start

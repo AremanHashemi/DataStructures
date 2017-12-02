@@ -40,7 +40,7 @@ Self check 2
 			a			50 -1
 			 		b		c
 2) why doesnt this fix the problem
-	Because the imbalance lies within B by just shifting around the root of the imbalance you're not fixing b just shifting it to the other side
+	Because the imbalance lies at b by flipping b to the other side with a right rotation you're just moving the imbalance
 	
 
 Self Check 3
