@@ -1,5 +1,0 @@
-1) Since my program starts with a guess of 1,1,1 it only takes one try to get the first murder.
- The second murder takes 20 checks. 5 tries of the random solution takes [10,8,10,18,4] checks to get the correct solution.
-
-2)The good thing about this stratagy is that if the murder is near the begining of the list my program will find them faster. 
-The closer we get to the end of the list the longer it will take to get the solution.
